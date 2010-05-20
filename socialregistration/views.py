@@ -108,7 +108,7 @@ def facebook_login(request, template='socialregistration/facebook.html',
             context_instance=RequestContext(request))
 
     user = authenticate(uid=request.facebook.uid)
-
+    user = None
     if user is None:
         request.session['socialregistration_user'] = User()
         request.session['socialregistration_profile'] = FacebookProfile(uid=request.facebook.uid)

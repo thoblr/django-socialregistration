@@ -1,11 +1,11 @@
 from django import forms
-from django.utils.translation import gettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User
 
 class UserForm(forms.Form):
-    username = forms.RegexField(r'^\w+$', max_length=32)
-    email = forms.EmailField(required=False)
+    username = forms.RegexField(r'^\w+$', max_length=32, label=_("Username"))
+    email = forms.EmailField(required=False, label=_("Email"))
 
     def __init__(self, user, profile, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
