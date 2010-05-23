@@ -17,7 +17,7 @@ urlpatterns = patterns('',
 )
 
 # Setup Facebook URLs if there's an API key specified
-if getattr(settings, 'FACEBOOK_API_KEY', None) is not None:
+if 'facebook' in settings.SOCIAL_REGISTRATION_BACKENDS:
     urlpatterns = urlpatterns + patterns('',
         url('^facebook/login/$', 'socialregistration.views.facebook_login',
             name='facebook_login'),
@@ -30,8 +30,9 @@ if getattr(settings, 'FACEBOOK_API_KEY', None) is not None:
             name='facebook_xd_receiver'),
     )
 
+# TODO: Move twitter settings to view to be able to handle multiple sites
 #Setup Twitter URLs if there's an API key specified
-if getattr(settings, 'TWITTER_CONSUMER_KEY', None) is not None:
+if 'twitter' in settings.SOCIAL_REGISTRATION_BACKENDS:
     urlpatterns = urlpatterns + patterns('',
         url('^twitter/redirect/$', 'socialregistration.views.oauth_redirect',
             dict(

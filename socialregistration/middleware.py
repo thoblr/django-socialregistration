@@ -1,5 +1,5 @@
 import facebook
-from django.conf import settings
+from socialregistration.utils import get_setting_for_current_site
 
 class Facebook(object):
     def __init__(self, user=None):
@@ -21,7 +21,8 @@ class FacebookMiddleware(object):
         """
         
         fb_user = facebook.get_user_from_cookie(request.COOKIES,
-            settings.FACEBOOK_API_KEY, settings.FACEBOOK_SECRET_KEY)
+            get_setting_for_current_site('FACEBOOK_API_KEY'),
+            get_setting_for_current_site('FACEBOOK_SECRET_KEY'))
 
         request.facebook = Facebook(fb_user)
         

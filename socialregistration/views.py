@@ -19,7 +19,7 @@ from django.contrib.sites.models import Site
 
 from socialregistration.forms import UserForm
 from socialregistration.utils import (OAuthClient, OAuthTwitter,
-    OpenID, _https, DiscoveryFailure)
+    OpenID, _https, DiscoveryFailure, get_setting_for_current_site)
 from socialregistration.models import FacebookProfile, TwitterProfile, OpenIDProfile
 
 
@@ -161,9 +161,9 @@ def twitter(request, account_inactive_template='socialregistration/account_inact
     process is finished successfully
     """
     client = OAuthTwitter(
-        request, settings.TWITTER_CONSUMER_KEY,
-        settings.TWITTER_CONSUMER_SECRET_KEY,
-        settings.TWITTER_REQUEST_TOKEN_URL,
+        request, get_setting_for_current_site('TWITTER_CONSUMER_KEY'),
+        get_setting_for_current_site('TWITTER_CONSUMER_SECRET_KEY'),
+        get_setting_for_current_site('TWITTER_REQUEST_TOKEN_URL')
     )
 
     user_info = client.get_user_info()

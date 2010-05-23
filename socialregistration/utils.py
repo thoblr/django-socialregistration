@@ -47,7 +47,12 @@ def _https():
         return 's'
     else:
         return ''
-
+    
+    
+def get_setting_for_current_site(key):
+    current_site = Site.objects.get_current()
+    return settings.SOCIAL_REGISTRATION_SITES[current_site.domain][key]  
+    
 class OpenIDStore(OIDStore):
     max_nonce_age = 6 * 60 * 60
 
