@@ -2,7 +2,7 @@
 
 METADATA = dict(
     name='django-socialregistration',
-    version='0.4.1-multisite',
+    version='0.4.1-multisite2',
     author='Alen Mujezinovic',
     author_email='alen@caffeinehit.com',
     description='Django application enabling registration through a variety of APIs',
